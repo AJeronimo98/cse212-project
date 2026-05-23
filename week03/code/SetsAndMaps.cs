@@ -19,11 +19,25 @@ public static class SetsAndMaps
     /// that there were no duplicates) and therefore should not be returned.
     /// </summary>
     /// <param name="words">An array of 2-character words (lowercase, no duplicates)</param>
-    public static string[] FindPairs(string[] words)
+  public static string[] FindPairs(string[] words)
+{
+    HashSet<string> seen = new HashSet<string>();
+    List<string> result = new List<string>();
+
+    foreach (string word in words)
     {
-        // TODO Problem 1 - ADD YOUR CODE HERE
-        return [];
+        string reverse = "" + word[1] + word[0];
+
+        if (word != reverse && seen.Contains(reverse))
+        {
+            result.Add($"{reverse} & {word}");
+        }
+
+        seen.Add(word);
     }
+
+    return result.ToArray();
+}
 
     /// <summary>
     /// Read a census file and summarize the degrees (education)
